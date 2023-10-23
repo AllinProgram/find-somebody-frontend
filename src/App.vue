@@ -11,9 +11,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="找到TA！" />
 
       <nav>
-        <RouterLink to="/">主页</RouterLink>
-        <RouterLink to="/start">开始</RouterLink>
-        <RouterLink to="/about">关于</RouterLink>
+        <RouterLink to="/"><b>主页</b></RouterLink>
+        <RouterLink to="/start"><b>开始</b></RouterLink>
+        <RouterLink to="/about"><b>关于</b></RouterLink>
       </nav>
     </div>
   </header>

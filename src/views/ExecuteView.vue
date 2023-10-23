@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center">
 
-        <div class="stats shadow w-full scroll-auto">
+        <div class="stats shadow w-full overflow-x-auto whitespace-nowrap">
             <div class="stat">
                 <div class="stat-figure text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
