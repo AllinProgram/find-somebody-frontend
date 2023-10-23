@@ -1,65 +1,116 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <form @submit.prevent="parseUrl">
+
+        <div class="stats shadow">
+            <div class="stat">
+                <div class="stat-figure text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="inline-block w-8 h-8 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="stat-title">稳定运行</div>
+                <div class="stat-value text-primary">{{ daysPassed }}+</div>
+                <div class="stat-desc">Since 2021-04-01</div>
+            </div>
+            <div class="stat">
+                <div class="stat-figure text-warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="inline-block w-8 h-8 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div class="stat-title">页面访客</div>
+                <div class="stat-value text-warning">0.5M+</div>
+                <div class="stat-desc">Continues to increase ↗︎</div>
+            </div>
+            <div class="stat">
+                <div class="stat-figure text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="inline-block w-8 h-8 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                    </svg>
+                </div>
+                <div class="stat-title">处理请求</div>
+                <div class="stat-value text-secondary">17K+</div>
+                <div class="stat-desc">Success more than 87%</div>
+            </div>
+        </div>
+
+        <div class="divider mt-8 font-bold" style="color: hsla(160, 100%, 37%, 1);">输入链接</div>
+        <form @submit.prevent="submitForm">
             <div class="form-control">
-                <div class="input-group">
-                    <span>链接</span>
-                    <input type="url" placeholder="填入网易云音乐分享链接" class="input input-bordered" v-model="url" required />
-                    <button class="btn" type="submit">Go</button>
+                <div class="join">
+                    <input type="url" placeholder="网易云音乐/QQ音乐分享链接"
+                        class="input input-bordered join-item input-success w-full" v-model="url" required />
+                    <button class="btn join-item rounded-r-full" type="submit">Go</button>
                 </div>
             </div>
         </form>
 
+        <div class="divider mt-8 font-bold" style="color: hsla(160, 100%, 37%, 1);">解析结果</div>
+        <div class="alert" v-if="response.code == undefined && response.code == null">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>在上面输入分享的链接后戳Go！然后静待结果～</span>
+            <div>
+                <span class="loading loading-infinity loading-lg"></span>
+            </div>
+        </div>
+
+        <div class="alert alert-success" v-else-if="response.code === 1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>处理成功！</span>
+            <a target="_blank" :href="'https://nclgclub.com/outgoing?url=' + response.data" class="btn">
+                点我跳转
+            </a>
+        </div>
+        <div v-else-if="response.code === 0">
+            <div class="alert alert-error">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ response.message }}</span>
+            </div>
+        </div>
+
+        <div class="divider mt-8 font-bold" style="color: hsla(160, 100%, 37%, 1);">一些帮助</div>
         <div>
-            <div class="divider mt-8">解析结果</div>
+            网站的设计应该是比较易用的，如果在使用上还是遇到了一些比较棘手的问题，可以进行查阅
+            <label for="my-modal" class="btn btn-xs btn-success">更加详细的文档</label>。<br><br>
+            <input type="checkbox" id="my-modal" class="modal-toggle" />
+            <div class="modal">
+                <div class="modal-box">
+                    <img src="../assets/qr_code.png">
+                    <div class="modal-action">
+                        <label for="my-modal" class="btn btn-sm">
+                            好
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-            <div class="radial-progress" v-if="isLoading" :style="{ '--value': loadingPercentage }">
-                {{ loadingPercentage }}
-            </div>
-            <div v-if="!isLoading">
-                <div v-if="code"><a :href="'https://nclgclub.com/outgoing?url=' + encodeURIComponent(data)"
-                        target="_blank">解析成功，点我跳转。</a></div>
-                <div v-else>{{ data }}</div>
-            </div>
+            现已经支持处理以下分享链接：
+            <li class="italic">网易云音乐</li>
+            <li class="italic">QQ音乐</li>
+
+            若出现任何问题，可以通过公众号进行反馈以获得帮助。<br>当然,也欢迎闲聊～
         </div>
 
-
-
-        <div class="divider mt-8">一些帮助</div>
-
-        <div style="max-width: 100%;">
-            <p class="text-lg font-medium">音乐分享链接样例</p>
-            <ul class="list-inside list-decimal">
-                <li class="mb-4">
-                    新版应用分享的链接格式
-                    <div class="ml-4">
-                        <p class="overflow-auto"><a
-                                href="https://y.music.163.com/m/song?id=1406273234&amp;uct=G3Zo3HPs7EAHzH4lMl0+sQ%3D%3D&amp;dlt=2048"
-                                target="_blank">https://y.music.163.com/m/song?id=1406273234&amp;uct=G3Zo3HPs7EAHzH4lMl0+sQ%3D%3D&amp;dlt=2048</a>
-                        </p>
-                        <p class="overflow-auto"><a
-                                href="https://y.music.163.com/m/song?id=1406273234&amp;uct2=sS9/YtaXNsKoRP9/wNPXQw%3D%3D&amp;dlt=2048"
-                                target="_blank">https://y.music.163.com/m/song?id=1406273234&amp;uct2=sS9/YtaXNsKoRP9/wNPXQw%3D%3D&amp;dlt=2048</a>
-                        </p>
-                    </div>
-                </li>
-                <li class="mb-4">
-                    旧版应用分享的链接格式
-                    <div class="ml-4">
-                        <p class="overflow-auto"><a href="https://y.music.163.com/m/song?id=1406273234&amp;userid=301540571"
-                                target="_blank">https://y.music.163.com/m/song?id=1406273234&amp;userid=301540571</a></p>
-                    </div>
-                </li>
-            </ul>
-            <p class="italic text-gray-500 mb-4">
-                看到上述链接请不要困惑，这是链接的示例。<br>
-                如果你找到的分享链接地址与其格式不符，并且解析异常，那说明找到的链接不正确。<br>
-                若该信息真的对你很重要，你可以添加我的微信获取更多帮助。
-            </p>
-        </div>
-
-        <div class="divider mt-8">免责声明</div>
-        <p>本站点仅供学习测试，完全免费，一切分享性质以及使用过程中导致的责任仅与使用者相关，若不同意请勿使用。</p>
+        <div class="divider mt-8 font-bold" style="color: hsla(160, 100%, 37%, 1);">免责声明</div>
+        <p>本站点仅供学习测试，完全免费，希望能帮你找到那个喜欢的TA！</p>
+        <p> 一切分享性质以及使用过程中导致的责任仅与使用者相关，若不同意请勿使用。</p>
 
     </div>
 </template>
@@ -68,41 +119,55 @@
 export default {
     data() {
         return {
-            url: null, // 填入的分享url
-            code: false, // 接口处理结果
-            data: '', // 接口返回数据
-            isLoading: false, // 接口调用是否完成
-            loadingPercentage: 0 // 进度条百分比
-        }
+            url: '',
+            loading: false,
+            response: {},
+        };
     },
     methods: {
-        async parseUrl() {
-            this.isLoading = true;
+        async submitForm() {
+            this.loading = true;
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/parse', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: this.url }),
+                });
+                this.response = await response.json();
+            } catch (error) {
+                console.error(error);
+                this.response = { code: 0, message: '请联系公众号进行处理！' };
+            } finally {
+                this.loading = false;
+            }
+        },
+        getTimePassed() {
+            const startDate = new Date('2022-01-01'); // 设置开始日期
+            const currentDate = new Date(); // 获取当前日期
 
-            // 模拟请求过程，每隔一段时间更新进度条
-            const updateLoadingPercentage = setInterval(() => {
-                if (this.loadingPercentage < 100) {
-                    this.loadingPercentage += 10;
-                }
-            }, 66);
+            // 计算日期差值（以毫秒为单位）
+            const timeDiff = currentDate.getTime() - startDate.getTime();
 
-            // 使用fetch发送请求
-            const response = await fetch('api/parse', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(this.url)
-            })
-            // 等待响应体解析完成
-            const result = await response.json()
-            console.log(result)
-            // 处理请求成功后的数据
-            this.code = result.code
-            this.data = result.data
+            // 将毫秒转换为天数
+            const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-            // 清除定时器和设置 isLoading 为false
-            clearInterval(updateLoadingPercentage);
-            this.isLoading = false;
+            return daysPassed;
+        },
+    }, computed: {
+        daysPassed() {
+            const startDate = new Date('2022-01-01'); // 设置开始日期
+            const currentDate = new Date(); // 获取当前日期
+
+            // 计算日期差值（以毫秒为单位）
+            const timeDiff = currentDate.getTime() - startDate.getTime();
+
+            // 将毫秒转换为天数
+            const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+            return daysPassed;
         }
     }
-}
+};
 </script>
