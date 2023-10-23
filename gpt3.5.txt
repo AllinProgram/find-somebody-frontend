@@ -1,0 +1,83 @@
+请根据下面的html代码，使用vue3和实现以下逻辑: 
+1. 点击按钮对api/parse发起post请求，请求体内容为输入框的url的值，并加上请求动画。
+2. 返回结构体为{"code":1,"data":"https://www.sojson.com/","message":null}，当code为1时候，请在页面展示data的内容，当code为0的时候，展示message的内容。
+请使页面尽量美观一些
+
+<form>
+    <div class="form-control">
+        <div class="input-group">
+            <span>链接</span>
+            <input type="url" placeholder="填入网易云音乐分享链接" class="input input-bordered" v-model="url" required />
+            <button class="btn" type="submit">Go</button>
+        </div>
+    </div>
+</form>
+
+
+以下是使用Vue 3实现上述逻辑的代码示例：
+
+Copy code
+<template>
+  <form @submit.prevent="submitForm">
+    <div class="form-control">
+      <div class="input-group">
+        <span>链接</span>
+        <input type="url" placeholder="填入网易云音乐分享链接" class="input input-bordered" v-model="url" required />
+        <button class="btn" type="submit">Go</button>
+      </div>
+    </div>
+  </form>
+
+  <div v-if="loading" class="loader">加载中...</div>
+  <div v-else-if="response.code === 1" class="success-message">{{ response.data }}</div>
+  <div v-else-if="response.code === 0" class="error-message">{{ response.message }}</div>
+</template>
+
+<script>
+import { ref } from 'vue';
+
+export default {
+  data() {
+    return {
+      url: '',
+      loading: false,
+      response: null,
+    };
+  },
+  methods: {
+    async submitForm() {
+      this.loading = true;
+      try {
+        const response = await fetch('api/parse', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url: this.url }),
+        });
+        this.response = await response.json();
+      } catch (error) {
+        console.error(error);
+        this.response = { code: 0, message: '请求出错' };
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+};
+</script>
+
+<style>
+.loader {
+  /* 样式自定义，添加请求动画效果 */
+}
+
+.success-message {
+  /* 样式自定义，展示成功信息 */
+}
+
+.error-message {
+  /* 样式自定义，展示错误信息 */
+}
+</style>
+上述代码中，使用了Vue 3的ref来创建响应式数据，并通过v-model指令绑定输入框的值到url变量。在点击提交按钮后，会调用submitForm方法发起POST请求，并根据请求状态显示对应的加载动画或返回结果。页面根据response.code的值分别展示成功或失败的消息内容。你可以根据需要自定义样式以美化页面效果。
