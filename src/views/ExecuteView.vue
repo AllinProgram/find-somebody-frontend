@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center">
 
-        <div class="stats shadow">
+        <div class="stats shadow w-full scroll-auto">
             <div class="stat">
                 <div class="stat-figure text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -133,7 +133,7 @@ export default {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ url: this.url }),
+                    body: this.url,
                 });
                 this.response = await response.json();
             } catch (error) {
@@ -142,19 +142,7 @@ export default {
             } finally {
                 this.loading = false;
             }
-        },
-        getTimePassed() {
-            const startDate = new Date('2022-01-01'); // 设置开始日期
-            const currentDate = new Date(); // 获取当前日期
-
-            // 计算日期差值（以毫秒为单位）
-            const timeDiff = currentDate.getTime() - startDate.getTime();
-
-            // 将毫秒转换为天数
-            const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-            return daysPassed;
-        },
+        }
     }, computed: {
         daysPassed() {
             const startDate = new Date('2022-01-01'); // 设置开始日期
