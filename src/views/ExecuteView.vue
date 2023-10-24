@@ -58,7 +58,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span>在上面输入分享链接后戳Go！PS: 稍等就好就会出现主页调转链接。</span>
+            <span>在上面输入分享链接后戳Go！</span>
             <div>
                 <span class="loading loading-infinity loading-lg"></span>
             </div>
