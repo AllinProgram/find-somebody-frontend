@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center">
 
-        <div class="stats shadow w-full overflow-x-auto whitespace-nowrap">
+        <div class="stats shadow w-full overflow-x-auto whitespace-nowrap" style="margin-top: 10px;">
             <div class="stat">
                 <div class="stat-figure text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -58,7 +58,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span>在上面输入分享的链接后戳Go！然后静待结果～</span>
+            <span>在上面输入分享链接后戳Go！PS: 稍等就好就会出现主页调转链接。</span>
             <div>
                 <span class="loading loading-infinity loading-lg"></span>
             </div>
@@ -103,7 +103,7 @@
 
             现已经支持处理以下分享链接：
             <li class="italic">网易云音乐</li>
-            <li class="italic">QQ音乐</li>
+            <li class="italic">QQ音乐（用户主页需要登陆自己账号后才能查看）</li>
 
             若出现任何问题，可以通过公众号进行反馈以获得帮助。<br>当然,也欢迎闲聊～
         </div>
