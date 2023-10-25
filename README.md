@@ -1,29 +1,7 @@
-# find-user
+# Find Somebody
 
-This template should help get you started developing with Vue 3 in Vite.
+Help you find somebody you want.
 
-## Recommended IDE Setup
+Link: [找到TA!](https://findsomebody.nclgclub.com/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+<img width="1266" alt="截屏2023-10-25 22 27 24" src="https://github.com/allinprogram/FindSomebody-Frontend/assets/29867703/bbbc714d-6986-4540-885c-4a7ebb37a718">
