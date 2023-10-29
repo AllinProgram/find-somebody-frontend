@@ -27,7 +27,7 @@
     <div class="chat chat-end">
       <div class="chat-bubble">
         快去试试呀，等你好消息！<br>
-        有问题的话可以直接在<label for="my-modal" class="btn btn-xs btn-success">作者公众号</label>发消息寻求帮助喔。
+        有问题的话可以直接在<label for="my-modal" class="btn btn-xs btn-success">作者公众号</label>发消息寻求帮助喔。<br>后续站点迁移等消息也会在公众号进行通知，关注不失联！
         <input type="checkbox" id="my-modal" class="modal-toggle" />
         <div class="modal">
           <div class="modal-box">
