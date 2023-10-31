@@ -6,7 +6,7 @@
     <div class="chat chat-end">
       <div class="chat-bubble">
         这还不简单，复制TA发的音乐链接，<br>
-        到<a href="https://findneteasecloudmusicuser.nclgclub.com/" target="_blank">这个网站</a>，
+        到<a href="https://findneteasecloudmusicuser.nclgclub.com/start" target="_blank">找到TA！</a>，
         就能找得到TA的账号主页啦～<br>QQ音乐、网易云音乐都是支持的！
       </div>
     </div>
