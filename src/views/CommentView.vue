@@ -46,8 +46,7 @@ export default {
     mounted() {
         new Valine({
             el: '#vcomments',
-            appId: 'MjyojelHKka5dDwjoiSKASt9-gzGzoHsz',
-            appKey: 'Zv6kSpEPzIKvIdICzwQFCcAI',
+
             placeholder: "欢迎你来到这里，同时也欢迎你在这里畅所欲言，分享自己的故事~\n留言请尽量使用QQ邮箱（站内已经处理隐私，他人不可见），防止收不到回复。",
             meta: ['nick', 'mail', 'link'],
             recordIP: true,
