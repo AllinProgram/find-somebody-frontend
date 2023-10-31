@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <a class="green" href="https://findneteasecloudmusicuser.nclgclub.com/" target="_blank">
+    <a class="green" href="https://findsomebody.nclgclub.com/" target="_blank">
       <h1>{{ msg }}</h1>
     </a>
     <h3>

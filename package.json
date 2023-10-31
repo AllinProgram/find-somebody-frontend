@@ -16,5 +16,8 @@
     "vite": "^4.5.0",
     "vue": "^3.3.6",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "valine": "^1.5.1"
   }
 }
