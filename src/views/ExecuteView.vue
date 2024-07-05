@@ -90,7 +90,7 @@ export default {
         async submitForm() {
             this.loading = true;
             try {
-                const response = await fetch('/api/parse', {
+                const response = await fetch('http://localhost:8080/api/parse', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
