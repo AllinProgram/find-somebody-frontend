@@ -13,6 +13,36 @@
 
     <p>欢迎你来到这里，同时也欢迎你在这里畅所欲言，分享自己的故事~</p>
 
+    <div class="container">
+      <form @submit.prevent="submitComment">
+        <div class="mb-3">
+          <label for="nickname" class="form-label">Nickname</label>
+          <input
+            type="text"
+            class="form-input"
+            id="nickname"
+            v-model="nickname"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">Content</label>
+          <textarea
+            class="form-textarea"
+            id="content"
+            rows="3"
+            v-model="content"
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Contact</label>
+          <input type="text" class="form-input" id="contact" v-model="contact" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
     <!-- TODO 需要增加提交评论按钮~ -->
 
     <!-- TODO 这里的样式有蛮大问题~ -->
@@ -28,8 +58,6 @@
 </template>
 
 <script>
-import Valine from "valine";
-
 export default {
   data() {
     return {
