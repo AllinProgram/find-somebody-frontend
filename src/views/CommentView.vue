@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col justify-center items-center">
     <div>
-      <h1 class="card-title">“{{ content }}”</h1>
+      <h1 class="card-title">“{{ hitokoto }}”</h1>
       <div class="card-actions justify-end">
         <a v-bind:href="source" target="_blank">——《{{ name }}》{{ author }}</a>
       </div>
@@ -13,33 +13,42 @@
 
     <p>欢迎你来到这里，同时也欢迎你在这里畅所欲言，分享自己的故事~</p>
 
+    <!-- TODO 提交后数据插入现在的list -->
     <div class="container">
       <form @submit.prevent="submitComment">
-        <div class="mb-3">
-          <label for="nickname" class="form-label">Nickname</label>
+        <label class="input input-bordered flex items-center mt-2">
+          称呼
           <input
-            type="text"
-            class="form-input"
-            id="nickname"
             v-model="nickname"
+            type="text"
+            class="grow"
+            placeholder="怎么称呼你？"
             required
           />
-        </div>
-        <div class="mb-3">
-          <label for="content" class="form-label">Content</label>
-          <textarea
-            class="form-textarea"
-            id="content"
-            rows="3"
-            v-model="content"
+        </label>
+        <label class="input input-bordered flex items-center mt-2">
+          联系
+          <input
+            v-model="contact"
+            type="text"
+            class="grow"
+            placeholder="可以是邮箱甚至可以是邮编！"
             required
-          ></textarea>
+          />
+        </label>
+        <label class="input input-bordered flex items-center mt-2">
+          留言
+          <input
+            v-model="content"
+            type="text"
+            class="grow"
+            placeholder="若有什么建议或者意见欢迎随时提交给我～"
+            required
+          />
+        </label>
+        <div class="flex justify-end mt-2">
+          <button class="btn btn-success" type="submit">提交</button>
         </div>
-        <div class="mb-3">
-          <label for="contact" class="form-label">Contact</label>
-          <input type="text" class="form-input" id="contact" v-model="contact" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
 
@@ -61,10 +70,16 @@
 export default {
   data() {
     return {
+      // 一言
       name: "",
-      content: "",
+      hitokoto: "",
       author: "",
-      source: "https://hitokoto.cn/?uuid=",
+      source: "",
+
+      // 留言
+      nickname: "",
+      contact: "",
+      content: "",
       commentList: [],
     };
   },
@@ -78,9 +93,9 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.name = data.from;
-          this.content = data.hitokoto;
+          this.hitokoto = data.hitokoto;
           this.author = data.from_who;
-          this.source += data.uuid;
+          this.source += "https://hitokoto.cn/?uuid=" + data.uuid;
         })
         .catch((error) => {
           console.error("Error fetching quote:", error);
@@ -95,6 +110,25 @@ export default {
         .catch((error) => {
           console.error("Error fetching comments:", error);
         });
+    },
+    async submitComment() {
+      try {
+        const response = await fetch("http://localhost:8080/api/comment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nickname: this.nickname,
+            contact: this.contact,
+            content: this.content,
+          }),
+        });
+        this.response = await response.json();
+      } catch (error) {
+        console.error(error);
+        this.response = { code: 0, message: "请联系公众号进行处理！" };
+      }
     },
   },
   mounted() {},
