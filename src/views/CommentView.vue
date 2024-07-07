@@ -42,7 +42,7 @@
             v-model="content"
             type="text"
             class="grow"
-            placeholder="若有什么建议或者意见欢迎随时提交给我～"
+            placeholder="有什么想说的？"
             required
           />
         </label>
@@ -51,8 +51,6 @@
         </div>
       </form>
     </div>
-
-    <!-- TODO 需要增加提交评论按钮~ -->
 
     <!-- TODO 这里的样式有蛮大问题~ -->
     <div class="chat chat-start" v-for="comment in commentList">
