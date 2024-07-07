@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
+  <div class="flex flex-col justify-center">
     <div>
       <h1 class="card-title">“{{ hitokoto }}”</h1>
       <div class="card-actions justify-end">
@@ -11,40 +11,22 @@
       留言板
     </div>
 
-    <p>欢迎你来到这里，同时也欢迎你在这里畅所欲言，分享自己的故事~</p>
+    <p class="flex justify-center">欢迎你来到这里，同时也欢迎你在这里畅所欲言，分享自己的故事~</p>
 
     <!-- TODO 提交后数据插入现在的list -->
     <div class="container">
       <form @submit.prevent="submitComment">
         <label class="input input-bordered flex items-center mt-2">
           称呼
-          <input
-            v-model="nickname"
-            type="text"
-            class="grow"
-            placeholder="怎么称呼你？"
-            required
-          />
+          <input v-model="nickname" type="text" class="grow ml-2" placeholder="怎么称呼你？" required />
         </label>
         <label class="input input-bordered flex items-center mt-2">
           联系
-          <input
-            v-model="contact"
-            type="text"
-            class="grow"
-            placeholder="可以是邮箱甚至可以是邮编！"
-            required
-          />
+          <input v-model="contact" type="text" class="grow ml-2" placeholder="可以是邮箱甚至可以是邮编！" required />
         </label>
         <label class="input input-bordered flex items-center mt-2">
           留言
-          <input
-            v-model="content"
-            type="text"
-            class="grow"
-            placeholder="有什么想说的？"
-            required
-          />
+          <input v-model="content" type="text" class="grow ml-2" placeholder="有什么想说的？" required />
         </label>
         <div class="flex justify-end mt-2">
           <button class="btn btn-success" type="submit">提交</button>
@@ -52,14 +34,13 @@
       </form>
     </div>
 
-    <!-- TODO 这里的样式有蛮大问题~ -->
-    <div class="chat chat-start" v-for="comment in commentList">
-      <div class="chat-header">
-        <b>{{ comment.nickname }}</b>
-        <time class="text-xs opacity-50"></time>
+    <!-- 分割线 -->
+    <div class="divide-y divide-dashed divide-gray-700" >
+      <div v-for="comment in commentList">
+        <p class="text-lg text-success">{{ comment.nickname }}</p>
+        <p class="mx-4">{{ comment.content }}</p>
+        <time class="text-xs opacity-50 ml-2 flex justify-end">{{ comment.publishTime }}</time>
       </div>
-      <div class="chat-bubble">{{ comment.content }}</div>
-      <div class="chat-footer opacity-50">{{ comment.publishTime }}</div>
     </div>
   </div>
 </template>
@@ -123,12 +104,26 @@ export default {
           }),
         });
         this.response = await response.json();
+
+        // 检查响应状态码，确保评论已成功提交
+        if (!response.ok) {
+          throw new Error("Failed to submit comment");
+        }
+
+        // 在commentList中添加新的评论
+        this.commentList.unshift({
+          publishTime: new Date().toLocaleString(),
+          nickname: this.nickname,
+          contact: this.contact,
+          content: this.content,
+        });
+
       } catch (error) {
         console.error(error);
         this.response = { code: 0, message: "请联系公众号进行处理！" };
       }
     },
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
