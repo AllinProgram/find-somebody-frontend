@@ -81,7 +81,7 @@ export default {
         });
     },
     fetchAllComment() {
-      fetch("http://localhost:8080/api/comment")
+      fetch("/api/comment")
         .then((response) => response.json())
         .then((result) => {
           this.commentList = JSON.parse(result.data).reverse();
@@ -92,7 +92,7 @@ export default {
     },
     async submitComment() {
       try {
-        const response = await fetch("http://localhost:8080/api/comment", {
+        const response = await fetch("/api/comment", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
