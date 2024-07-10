@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center">
+  <div class="flex flex-col justify-center my-4">
     <div>
       <h1 class="card-title">“{{ hitokoto }}”</h1>
       <div class="card-actions justify-end">

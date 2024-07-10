@@ -1,18 +1,22 @@
 <template>
   <main>
     <div class="chat chat-start">
-      <div class="chat-bubble">喜欢的TA在班群分享了一首歌，<br>好好听！好想知道TA的音乐账号！<br>这样就有更多话题了。</div>
+      <div class="chat-bubble">喜欢的TA在班群分享一篇小红书笔记，<br>是我的菜！好想知道TA的小红书账号，<br>这样就有更多话题了。</div>
     </div>
     <div class="chat chat-end">
       <div class="chat-bubble">
-        这还不简单，复制TA发的音乐链接，<br>
-        到<a href="https://findneteasecloudmusicuser.nclgclub.com/start" target="_blank">找到TA！</a>，
-        就能找得到TA的账号主页啦～<br>QQ音乐、网易云音乐都是支持的！
+        这还不简单，复制TA发的分享链接，<br>
+        打开<a class= "btn btn-xs btn-success mx-2" href="https://findneteasecloudmusicuser.nclgclub.com/start" target="_blank"> 找到TA！ </a>，
+        就能找得到TA的账号主页～<br>支持以下分享链接：
+        <li>小红书</li>
+        <li>网易云音乐</li>
+        <li>QQ音乐</li>
+        <li>待你发掘~</li>
       </div>
     </div>
 
     <div class="chat chat-start">
-      <div class="chat-bubble">真的吗，我现在就去试试看！</div>
+      <div class="chat-bubble">这么神奇？我现在就去试试看！</div>
     </div>
     <div class="chat chat-end">
       <div class="chat-bubble">
@@ -26,8 +30,8 @@
     </div>
     <div class="chat chat-end">
       <div class="chat-bubble">
-        快去试试呀，等你好消息！<br>
-        有问题的话可以直接在<label for="my-modal" class="btn btn-xs btn-success">作者公众号</label>发消息寻求帮助喔。<br>后续站点迁移等消息也会在公众号进行通知，关注不失联！
+        快去试试，等你好消息！<br>
+        有问题的话可以直接在<label for="my-modal" class="btn btn-xs btn-success mx-2">作者公众号</label>发消息寻求帮助。<br>后续更新通知也会在公众号进行通知，关注不失联！
         <input type="checkbox" id="my-modal" class="modal-toggle" />
         <div class="modal">
           <div class="modal-box">

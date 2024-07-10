@@ -47,8 +47,8 @@
 
         <div class="divider mt-8 font-bold" style="color: hsla(160, 100%, 37%, 1);">一些帮助</div>
         <div>
-            网站的设计应该是比较易用的，如果在使用上还是遇到了一些比较棘手的问题，可以进行查阅
-            <label for="my-modal" class="btn btn-xs btn-success">更加详细的文档</label>。<br><br>
+            网站的设计应该是比较易用的，如果你在使用上还是遇到了一些比较棘手的问题，可以进行查阅
+            <label for="my-modal" class="btn btn-xs btn-success mx-2">更加详细的文档</label>。<br><br>
             <input type="checkbox" id="my-modal" class="modal-toggle" />
             <div class="modal">
                 <div class="modal-box">
@@ -61,7 +61,8 @@
                 </div>
             </div>
 
-            现已经支持处理以下分享链接：
+            现已支持处理以下分享链接：
+            <li class="italic">小红书</li>
             <li class="italic">网易云音乐</li>
             <li class="italic">QQ音乐（用户主页需要登陆自己账号后才能查看）</li>
 
