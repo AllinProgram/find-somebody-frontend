@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import { createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
-  // 使用hash路由，页面刷新不会404
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  // 可以使用hash路由，页面刷新不配置Nginx也不会404
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
