@@ -63,6 +63,7 @@
 
             现已支持处理以下分享链接：
             <li class="italic">小红书</li>
+            <li class="italic">汽水音乐</li>
             <li class="italic">网易云音乐</li>
             <li class="italic">QQ音乐（用户主页需要登陆自己账号后才能查看）</li>
 
