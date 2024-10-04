@@ -84,7 +84,7 @@ export default {
       fetch("/api/comment")
         .then((response) => response.json())
         .then((result) => {
-          this.commentList = JSON.parse(result.data).reverse();
+          this.commentList = result.data.reverse();
         })
         .catch((error) => {
           console.error("Error fetching comments:", error);
