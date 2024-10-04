@@ -96,7 +96,7 @@ export default {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: this.url,
+                    body: JSON.stringify({shareUrl: url}),
                 });
                 this.response = await response.json();
             } catch (error) {
