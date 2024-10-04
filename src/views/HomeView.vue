@@ -6,11 +6,12 @@
     <div class="chat chat-end">
       <div class="chat-bubble">
         这还不简单，复制TA发的分享链接，<br>
-        打开<a class= "btn btn-xs btn-success mx-2" href="https://findneteasecloudmusicuser.nclgclub.com/start" target="_blank"> 找到TA！ </a>，
+        打开<a class= "btn btn-xs btn-success mx-2" href="https://findsomebody.nclgclub.com/start" target="_blank"> 找到TA！ </a>，
         就能找得到TA的账号主页～<br>支持以下分享链接：
         <li>小红书</li>
         <li>网易云音乐</li>
         <li>QQ音乐</li>
+        <li>汽水音乐</li>
         <li>待你发掘~</li>
       </div>
     </div>
@@ -20,8 +21,7 @@
     </div>
     <div class="chat chat-end">
       <div class="chat-bubble">
-        不论是聊天中的分享链接，<br>还是分享在朋友圈或者微博的，<br>
-        都可以解析喔。
+        不论是聊天中的分享链接，<br>还是分享在朋友圈或者微博的，<br>都可以解析喔。
       </div>
     </div>
 

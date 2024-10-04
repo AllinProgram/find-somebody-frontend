@@ -10,8 +10,8 @@
 
           Explore More:<br>
           <a href="https://wedrink.fun/">We Drink Fun</a>
-          <a href="https://nclgclub.com/">南昌理工CLUB</a>
-          <a href="https://mustbe.cool/">Must Be Cool</a>
+          <a href="http://mustbe.cool/">Must Be Cool</a>
+          <a href="https://allinprogram.com/">AllinProgram</a>
           <br>
           <label class="btn btn-success" for="my_modal_7">
             <svg data-v-0035b598="" width="30" height="40" viewBox="0 0 25 35" fill="none"
@@ -59,12 +59,12 @@
             <div class="modal-box">
               <h3 class="font-bold text-lg">Hi!</h3>
               <p class="py-4">
-                谢谢你的慷慨！<br>
+                谢谢你的慷慨！👍<br>
                 实际上，为了应对我那糟糕的工作，我已经喝了太多咖啡 ☕️。<br>
                 你可以将这笔钱用在更需要它的地方 💰。<br>
                 无论你是学生还是已经开始工作，<br>
                 都可以尝试多购买书籍并阅读以提升自己 📚。<br>
-                希望我们都能过上充实的生活 👍💪！
+                希望我们都能过上充实的生活 💪！
               </p>
               <div class="modal-action">
                 <label for="my_modal_7" class="btn">Close</label>

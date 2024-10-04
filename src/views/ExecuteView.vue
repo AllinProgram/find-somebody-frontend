@@ -5,7 +5,7 @@
         <form @submit.prevent="submitForm">
             <div class="form-control">
                 <div class="join">
-                    <input type="url" placeholder="网易云音乐/QQ音乐分享链接"
+                    <input type="url" placeholder="小红书/网易云音乐/QQ音乐/汽水音乐分享链接"
                         class="input input-bordered join-item input-success w-full" v-model="url" required />
                     <button class="btn join-item rounded-r-full" type="submit">Go</button>
                 </div>
