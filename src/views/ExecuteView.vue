@@ -7,25 +7,27 @@
                 <div class="join">
                     <input type="url" placeholder="小红书/网易云音乐/QQ音乐/汽水音乐分享链接"
                         class="input input-bordered join-item input-success w-full" v-model="url" required />
-                    <button class="btn join-item rounded-r-full" type="submit">Go</button>
+                    <button class="btn join-item rounded-r-full" type="submit" :disabled="loading">
+                        <span v-if="loading" class="loading loading-spinner loading-md"></span>
+                        <span v-else>Go</span>
+                    </button>
                 </div>
             </div>
         </form>
 
         <div class="divider mt-8 font-bold" style="color: hsla(160, 100%, 37%, 1);">解析结果</div>
-        <div class="alert" v-if="response.code == undefined && response.code == null">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+        <div class="alert" v-if="response.code == undefined || response.code == null">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="stroke-info shrink-0 w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span>在上面输入分享链接后戳Go！</span>
-            <div>
-                <span class="loading loading-infinity loading-lg"></span>
-            </div>
         </div>
 
         <div class="alert alert-success" v-else-if="response.code === 1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -91,15 +93,18 @@ export default {
     methods: {
         async submitForm() {
             this.loading = true;
+            this.response = {}; // 清空响应数据
+            await new Promise(resolve => setTimeout(resolve, 1666));
             try {
                 const response = await fetch('/api/parse', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({shareUrl: this.url}),
+                    body: JSON.stringify({ shareUrl: this.url }),
                 });
                 this.response = await response.json();
+                this.url = ''; // 清空输入框
             } catch (error) {
                 console.error(error);
                 this.response = { code: 0, message: '请联系公众号进行处理！' };
@@ -107,7 +112,8 @@ export default {
                 this.loading = false;
             }
         }
-    }, computed: {
+    },
+    computed: {
         daysPassed() {
             const startDate = new Date('2022-01-01'); // 设置开始日期
             const currentDate = new Date(); // 获取当前日期
