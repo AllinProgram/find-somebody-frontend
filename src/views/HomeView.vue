@@ -8,6 +8,7 @@
         这还不简单，复制TA发的分享链接，<br>
         打开<a class= "btn btn-xs btn-success mx-2" href="https://findsomebody.nclgclub.com/start" target="_blank"> 找到TA！ </a>，
         就能找得到TA的账号主页～<br>支持以下分享链接：
+        <li>微博</li>
         <li>小红书</li>
         <li>网易云音乐</li>
         <li>QQ音乐</li>
