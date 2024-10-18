@@ -14,7 +14,8 @@
 
         <div class="divider mt-8 font-bold" style="color: hsla(160, 100%, 37%, 1);">解析结果</div>
         <div class="alert" v-if="response.code == undefined && response.code == null">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="stroke-info shrink-0 w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
@@ -25,7 +26,8 @@
         </div>
 
         <div class="alert alert-success" v-else-if="response.code === 1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -77,7 +79,7 @@
 </template>
 
 <script>
-alert("近期发现有人使用该工具进行非法营利，如果你是通过付费找到该工具或者发现有人在售卖，请直接申请退款并提交举报，或者可以将相关信息发送给我进行处理！");
+alert("做这个工具的初衷不是让某些人用来卖钱甚至骗人的，我没有挣一分钱，网站甚至没有广告。为了防止滥用，现在只能通过微信公众号打开使用！");
 
 export default {
     data() {
@@ -89,6 +91,11 @@ export default {
     },
     methods: {
         async submitForm() {
+            if (!navigator.userAgent.includes('MicroMessenger')) {
+                alert('滥用的人太多，请在微信公众号中打开使用！');
+                return;
+            }
+
             this.loading = true;
             try {
                 const response = await fetch('/api/parse', {
